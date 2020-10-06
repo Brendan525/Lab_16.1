@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User</title>
+
+    <script>
+
+        function submitForm() {
+            let first = document.getElementById('FirstNameElem');
+            let last = document.getElementById('LastNameElem');
+            let email = document.getElementById('Email');
+            let password = document.getElementById('Password');
+            let confirmPassword = document.getElementById('ConfirmPassword');
+
+            const regex = /^[a-zA-Z\s]{2,}/g;
+
+            if (!(first.value.match(regex))) {
+                let block1 = document.getElementById('block1');
+                block1.innerHTML = 'First Name must be at least 2 characters';
+                return false;
+            }
+
+            if (!(last.value.match(regex))) {
+                let block2 = document.getElementById('block2');
+                block2.innerHTML = 'Last name must be at least 2 characters';
+                return false;
+            }
+
+            const emailRegex = /^\w{2,}@@\w{2,}\.\w{2,}$/g;
+
+            if (!(email.value.match(emailRegex))) {
+                let block3 = document.getElementById('block3');
+                block3.innerHTML = 'Please enter a valid email';
+                return false;
+            }
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@@$!%*?&])[A-Za-z\d$@@$!%*?&]{8,10}/g
+
+            if (!(password.value.match(passwordRegex))) {
+                let block4 = document.getElementById('block4');
+                block4.innerHTML = 'Please enter a valid password. 1 uppercase letter, 1 lower case letter, 1 special character and 1 symbol';
+                return false;
+            }
+
+            let cPassword = password.value.match(passwordRegex);
+
+            if (confirmPassword.value == password.value) {
+                return true;
+            }
+            else {
+                let block5 = document.getElementById('block5');
+                block5.innerHTML = 'Passwords do not match. Please match passwords';
+                return false;
+            }
+            
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+
+
+    <form action="/home/registeration" onsubmit="return submitForm()">
+        First Name: <input type="text" name="FirstName" id="FirstNameElem" /> <div id="block1"><p></p></div>                 
+
+        Last Name: <input type="text" name="LastName" id="LastNameElem" /> <div id="block2"><p></p></div>
+
+        Email: <input type="text" name="Email" id="Email" /> <div id="block3"><p></p></div>
+
+        Password: <input type="text" name="Password" id="Password" /> <div id="block4"><p></p></div>
+
+        Confirm Password: <input type="text" name="ConfirmPassword" id="ConfirmPassword" /> <div id="block5"><p></p></div>
+        <input type="submit" />
+    </form>
+</body>
+</html>
