@@ -51,14 +51,12 @@
 
             let cPassword = password.value.match(passwordRegex);
 
-            if (confirmPassword.value == password.value) {
-                return true;
-            }
-            else {
+            if (!(confirmPassword.value == password.value)) {
                 let block5 = document.getElementById('block5');
                 block5.innerHTML = 'Passwords do not match. Please match passwords';
                 return false;
             }
+            
             
         }
 
@@ -77,9 +75,9 @@
 
         Email: <input type="text" name="Email" id="Email" /> <div id="block3"><p></p></div>
 
-        Password: <input type="text" name="Password" id="Password" /> <div id="block4"><p></p></div>
+        Password: <input type="password" name="Password" id="Password" /> <div id="block4"><p></p></div>
 
-        Confirm Password: <input type="text" name="ConfirmPassword" id="ConfirmPassword" /> <div id="block5"><p></p></div>
+        Confirm Password: <input type="password" name="ConfirmPassword" id="ConfirmPassword" /> <div id="block5"><p></p></div>
         <input type="submit" />
     </form>
 </body>
